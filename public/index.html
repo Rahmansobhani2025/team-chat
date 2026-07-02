@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Team Chat</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Join screen -->
+  <div id="join-screen" class="screen">
+    <div class="join-card">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-name">team.chat</span>
+      </div>
+      <h1>Start a working session</h1>
+      <p class="sub">Everyone using the same room name lands in the same chat. Your teammate joins automatically.</p>
+
+      <label>Your name</label>
+      <input id="username" type="text" placeholder="e.g. Priya" maxlength="24" />
+
+      <label>Room name</label>
+      <input id="roomId" type="text" placeholder="e.g. launch-week" maxlength="40" />
+
+      <label>What's the project? <span class="optional">(first person to join sets this)</span></label>
+      <textarea id="projectContext" rows="3" placeholder="e.g. We're building a Chrome extension that summarizes long email threads. Deadline is Friday. Stack is React + a small Node backend."></textarea>
+
+      <button id="join-btn">Join room</button>
+      <p class="hint" id="join-hint"></p>
+    </div>
+  </div>
+
+  <!-- Chat screen -->
+  <div id="chat-screen" class="screen hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-name">team.chat</span>
+      </div>
+      <div class="room-label">
+        <span class="label-eyebrow">Room</span>
+        <span id="room-title">—</span>
+      </div>
+      <div class="project-box">
+        <span class="label-eyebrow">Project</span>
+        <p id="project-text">—</p>
+      </div>
+      <div class="members-box">
+        <span class="label-eyebrow">In this room</span>
+        <ul id="members-list"></ul>
+      </div>
+      <div class="ai-status">
+        <span class="ai-dot" id="ai-dot"></span>
+        <span id="ai-status-text">teammate is listening</span>
+      </div>
+    </aside>
+
+    <main class="chat-main">
+      <div id="messages" class="messages"></div>
+      <form id="message-form" class="composer">
+        <input id="message-input" type="text" autocomplete="off" placeholder="Message the room…" />
+        <button type="submit">Send</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
